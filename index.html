@@ -2,373 +2,741 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>poole. | Tennoji, Osaka</title>
-  <meta name="description" content="poole. — 天王寺の昼はカフェ、夜はバー。">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    html {
-      scroll-behavior: smooth;
-    }
+<title>poole. — DAY & NIGHT</title>
 
-    body {
-      font-family: Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
-      background: #111;
-      color: #f4f1eb;
-      line-height: 1.8;
-    }
+<meta name="description" content="poole. — 天王寺にある、昼と夜で表情を変える場所。">
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap');
 
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-end;
-      padding: 60px 8%;
-      background:
-        linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.15)),
-        radial-gradient(circle at 70% 35%, #594b3d, #171513 55%, #090909);
-    }
+:root {
+  --bg:#11110f;
+  --paper:#e9e4db;
+  --text:#f4f0e8;
+  --muted:#aaa49a;
+  --line:rgba(255,255,255,.18);
+}
 
-    .hero-content {
-      max-width: 700px;
-    }
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    .eyebrow {
-      letter-spacing: .35em;
-      font-size: 12px;
-      opacity: .7;
-      margin-bottom: 25px;
-    }
+html {
+  scroll-behavior:smooth;
+}
 
-    h1 {
-      font-size: clamp(70px, 14vw, 150px);
-      font-weight: 300;
-      letter-spacing: -.06em;
-      line-height: .9;
-    }
+body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Noto Sans JP", sans-serif;
+  font-weight:300;
+  line-height:1.8;
+}
 
-    .hero-copy {
-      margin-top: 30px;
-      font-size: 17px;
-      color: #d5d0c8;
-      max-width: 520px;
-    }
+a {
+  color:inherit;
+  text-decoration:none;
+}
 
-    .button {
-      display: inline-block;
-      margin-top: 35px;
-      border: 1px solid #aaa;
-      padding: 12px 25px;
-      font-size: 13px;
-      letter-spacing: .15em;
-      transition: .3s;
-    }
+img {
+  width:100%;
+  display:block;
+}
 
-    .button:hover {
-      background: #f4f1eb;
-      color: #111;
-    }
+.serif {
+  font-family:"Cormorant Garamond", serif;
+}
 
-    section {
-      padding: 110px 8%;
-    }
+/* ---------------- HERO ---------------- */
 
-    .section-label {
-      font-size: 11px;
-      letter-spacing: .3em;
-      color: #aaa;
-      margin-bottom: 25px;
-    }
+.hero {
+  min-height:100svh;
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.05) 20%,rgba(0,0,0,.88) 100%),
+    radial-gradient(circle at 70% 30%,#65594b,#25211c 40%,#0d0d0c 80%);
+}
 
-    .about {
-      background: #e9e4dc;
-      color: #161616;
-    }
+.hero::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,.45),transparent);
+  pointer-events:none;
+}
 
-    .about h2 {
-      font-size: clamp(35px, 6vw, 65px);
-      font-weight: 300;
-      line-height: 1.25;
-      max-width: 900px;
-    }
+.hero-inner {
+  position:relative;
+  z-index:2;
+  padding:0 7vw 8vh;
+  width:100%;
+}
 
-    .about p {
-      margin-top: 35px;
-      max-width: 650px;
-      color: #555;
-    }
+.location {
+  font-size:10px;
+  letter-spacing:.4em;
+  color:#c9c2b7;
+  margin-bottom:25px;
+}
 
-    .modes {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      margin-top: 70px;
-      border-top: 1px solid #aaa;
-    }
+.logo {
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(100px,18vw,230px);
+  font-weight:300;
+  letter-spacing:-.075em;
+  line-height:.72;
+}
 
-    .mode {
-      padding: 40px 30px 40px 0;
-      border-bottom: 1px solid #aaa;
-    }
+.hero-copy {
+  margin-top:40px;
+  max-width:480px;
+  font-size:14px;
+  color:#d0cbc3;
+}
 
-    .mode + .mode {
-      border-left: 1px solid #aaa;
-      padding-left: 30px;
-    }
+.hero-nav {
+  position:absolute;
+  z-index:3;
+  top:35px;
+  right:7vw;
+  display:flex;
+  gap:30px;
+  font-size:10px;
+  letter-spacing:.2em;
+}
 
-    .mode h3 {
-      font-size: 28px;
-      font-weight: 400;
-      margin-bottom: 10px;
-    }
+.hero-nav a {
+  opacity:.75;
+}
 
-    .menu {
-      background: #151515;
-    }
+.hero-nav a:hover {
+  opacity:1;
+}
 
-    .menu-list {
-      max-width: 800px;
-      margin-top: 50px;
-    }
+.scroll {
+  position:absolute;
+  right:7vw;
+  bottom:7vh;
+  writing-mode:vertical-rl;
+  font-size:9px;
+  letter-spacing:.3em;
+  opacity:.55;
+}
 
-    .menu-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
-      padding: 20px 0;
-      border-bottom: 1px solid #333;
-    }
+/* ---------------- INTRO ---------------- */
 
-    .menu-item span:last-child {
-      color: #aaa;
-      white-space: nowrap;
-    }
+.intro {
+  background:var(--paper);
+  color:#171715;
+  padding:150px 7vw;
+}
 
-    .note {
-      margin-top: 25px;
-      color: #888;
-      font-size: 12px;
-    }
+.label {
+  font-size:10px;
+  letter-spacing:.35em;
+  margin-bottom:30px;
+  opacity:.6;
+}
 
-    .access {
-      background: #ded8cf;
-      color: #171717;
-    }
+.intro-title {
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(45px,7vw,90px);
+  font-weight:300;
+  line-height:1.05;
+  max-width:1000px;
+}
 
-    .access-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      margin-top: 50px;
-    }
+.intro-text {
+  margin-top:60px;
+  max-width:620px;
+  font-size:14px;
+  color:#555149;
+}
 
-    .access h2 {
-      font-size: 45px;
-      font-weight: 300;
-    }
+/* ---------------- DAY NIGHT ---------------- */
 
-    .info {
-      border-top: 1px solid #999;
-    }
+.modes {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
 
-    .info-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 15px 0;
-      border-bottom: 1px solid #999;
-      gap: 20px;
-    }
+.mode {
+  min-height:620px;
+  padding:70px 6vw;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
 
-    footer {
-      padding: 45px 8%;
-      background: #090909;
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
-      color: #aaa;
-      font-size: 12px;
-    }
+.day {
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.55)),
+    radial-gradient(circle at 50% 25%,#c9b99d,#756c5c 45%,#292722);
+}
 
-    @media (max-width: 700px) {
-      section {
-        padding: 80px 7%;
-      }
+.night {
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.8)),
+    radial-gradient(circle at 50% 25%,#50483e,#211f1b 50%,#080808);
+}
 
-      .modes,
-      .access-grid {
-        grid-template-columns: 1fr;
-      }
+.mode-number {
+  font-family:"Cormorant Garamond",serif;
+  font-size:18px;
+  opacity:.7;
+}
 
-      .mode + .mode {
-        border-left: 0;
-        padding-left: 0;
-      }
+.mode h2 {
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(55px,7vw,100px);
+  font-weight:300;
+  line-height:.9;
+  margin:15px 0 25px;
+}
 
-      .hero {
-        padding: 45px 7%;
-      }
+.mode p {
+  max-width:430px;
+  color:#ddd7ce;
+  font-size:13px;
+}
 
-      .menu-item {
-        font-size: 14px;
-      }
+/* ---------------- MENU ---------------- */
 
-      footer {
-        display: block;
-      }
-    }
-  </style>
+.menu {
+  padding:150px 7vw;
+  background:#151513;
+}
+
+.menu-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  border-bottom:1px solid var(--line);
+  padding-bottom:30px;
+}
+
+.menu-heading h2 {
+  font-family:"Cormorant Garamond",serif;
+  font-size:70px;
+  font-weight:300;
+}
+
+.menu-list {
+  max-width:850px;
+  margin-left:auto;
+  margin-top:60px;
+}
+
+.menu-item {
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:30px;
+  padding:23px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.menu-name {
+  font-size:15px;
+}
+
+.menu-price {
+  font-family:"Cormorant Garamond",serif;
+  font-size:20px;
+  color:#bdb5a9;
+}
+
+.demo-note {
+  margin-top:30px;
+  color:#77736c;
+  font-size:10px;
+}
+
+/* ---------------- PHILOSOPHY ---------------- */
+
+.philosophy {
+  background:#d9d2c7;
+  color:#191917;
+  padding:160px 7vw;
+}
+
+.philosophy-inner {
+  max-width:1100px;
+  margin:auto;
+  text-align:center;
+}
+
+.philosophy h2 {
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(50px,8vw,110px);
+  font-weight:300;
+  line-height:.95;
+}
+
+.philosophy p {
+  max-width:600px;
+  margin:50px auto 0;
+  color:#5b5750;
+  font-size:13px;
+}
+
+/* ---------------- ACCESS ---------------- */
+
+.access {
+  padding:150px 7vw;
+  background:#10100f;
+}
+
+.access-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10vw;
+  margin-top:70px;
+}
+
+.access-title {
+  font-family:"Cormorant Garamond",serif;
+  font-size:90px;
+  font-weight:300;
+  line-height:.9;
+}
+
+.info {
+  border-top:1px solid var(--line);
+}
+
+.info-row {
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  padding:18px 0;
+  border-bottom:1px solid var(--line);
+  font-size:12px;
+}
+
+.info-label {
+  color:#77736d;
+  letter-spacing:.15em;
+  font-size:9px;
+}
+
+/* ---------------- CTA ---------------- */
+
+.cta {
+  padding:130px 7vw;
+  text-align:center;
+  background:#e9e4db;
+  color:#171715;
+}
+
+.cta h2 {
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(60px,10vw,130px);
+  font-weight:300;
+  line-height:.8;
+}
+
+.cta p {
+  margin:35px auto;
+  max-width:450px;
+  font-size:13px;
+  color:#666159;
+}
+
+.button {
+  display:inline-block;
+  border:1px solid #222;
+  padding:15px 35px;
+  font-size:10px;
+  letter-spacing:.25em;
+  transition:.3s;
+}
+
+.button:hover {
+  background:#171715;
+  color:#fff;
+}
+
+/* ---------------- FOOTER ---------------- */
+
+footer {
+  padding:35px 7vw;
+  display:flex;
+  justify-content:space-between;
+  font-size:9px;
+  letter-spacing:.2em;
+  color:#77736d;
+}
+
+/* ---------------- MOBILE ---------------- */
+
+@media(max-width:700px) {
+
+  .hero-nav {
+    display:none;
+  }
+
+  .hero-inner {
+    padding:0 7vw 11vh;
+  }
+
+  .logo {
+    font-size:105px;
+  }
+
+  .intro {
+    padding:100px 7vw;
+  }
+
+  .modes {
+    grid-template-columns:1fr;
+  }
+
+  .mode {
+    min-height:520px;
+  }
+
+  .menu {
+    padding:100px 7vw;
+  }
+
+  .menu-heading h2 {
+    font-size:60px;
+  }
+
+  .access {
+    padding:100px 7vw;
+  }
+
+  .access-grid {
+    grid-template-columns:1fr;
+    gap:60px;
+  }
+
+  .access-title {
+    font-size:75px;
+  }
+
+  .cta {
+    padding:100px 7vw;
+  }
+
+  footer {
+    display:block;
+    line-height:3;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header class="hero">
-    <div class="hero-content">
-      <div class="eyebrow">TENNOJI / OSAKA</div>
-      <h1>poole.</h1>
-      <p class="hero-copy">
-        昼はコーヒーと甘いものを。<br>
-        夜はジンとともに、ゆっくりと。
-      </p>
-      <a class="button" href="#about">DISCOVER POOLE.</a>
-    </div>
-  </header>
+<!-- HERO -->
 
-  <section class="about" id="about">
-    <div class="section-label">ABOUT</div>
+<header class="hero">
+
+  <nav class="hero-nav">
+    <a href="#about">ABOUT</a>
+    <a href="#menu">MENU</a>
+    <a href="#access">ACCESS</a>
+  </nav>
+
+  <div class="hero-inner">
+
+    <div class="location">
+      TENNOJI / OSAKA
+    </div>
+
+    <div class="logo">
+      poole.
+    </div>
+
+    <p class="hero-copy">
+      昼と夜。<br>
+      コーヒーとジン。<br>
+      その日の気分に寄り添う、天王寺の一軒。
+    </p>
+
+  </div>
+
+  <div class="scroll">
+    SCROLL TO EXPLORE
+  </div>
+
+</header>
+
+
+<!-- INTRO -->
+
+<section class="intro" id="about">
+
+  <div class="label">
+    ABOUT POOLE.
+  </div>
+
+  <h1 class="intro-title">
+    A place to slow down,<br>
+    stay awhile.
+  </h1>
+
+  <p class="intro-text">
+    天王寺・大道にあるpoole.。<br><br>
+
+    昼はカフェとして、夜はバーとして。
+    コーヒーやスイーツ、ジンなどを楽しみながら、
+    それぞれの時間をゆっくり過ごせる場所です。
+  </p>
+
+</section>
+
+
+<!-- DAY / NIGHT -->
+
+<section class="modes">
+
+  <div class="mode day">
+
+    <div class="mode-number">
+      01 / DAY
+    </div>
 
     <h2>
-      時間の流れが、<br>
-      少しだけゆっくりになる場所。
+      Coffee<br>
+      & Sweets.
     </h2>
 
     <p>
-      天王寺・大道にあるpoole.。
-      昼はカフェとして、夜はバーとして。
-      コーヒーやスイーツ、ジンなどを楽しみながら、
-      それぞれの時間を過ごせる場所です。
+      ネルドリップコーヒーやスイーツとともに、
+      ゆっくり過ごす午後。
     </p>
 
-    <div class="modes">
-      <div class="mode">
-        <h3>DAY / CAFE</h3>
-        <p>
-          ネルドリップコーヒーやスイーツとともに、
-          ゆっくり過ごす午後。
-        </p>
-      </div>
+  </div>
 
-      <div class="mode">
-        <h3>NIGHT / BAR</h3>
-        <p>
-          ジンを中心としたドリンクと、
-          落ち着いた空間で過ごす夜。
-        </p>
-      </div>
-    </div>
-  </section>
 
-  <section class="menu">
-    <div class="section-label">MENU</div>
+  <div class="mode night">
 
-    <div class="menu-list">
-      <div class="menu-item">
-        <span>ネルドリップコーヒー</span>
-        <span>¥850〜</span>
-      </div>
-
-      <div class="menu-item">
-        <span>コーヒー</span>
-        <span>¥600〜</span>
-      </div>
-
-      <div class="menu-item">
-        <span>ティラミス</span>
-        <span>¥800〜</span>
-      </div>
-
-      <div class="menu-item">
-        <span>ショートケーキ</span>
-        <span>¥900〜</span>
-      </div>
-
-      <div class="menu-item">
-        <span>GIN / DRINKS</span>
-        <span>店頭メニューをご確認ください</span>
-      </div>
+    <div class="mode-number">
+      02 / NIGHT
     </div>
 
-    <p class="note">
-      ※掲載メニュー・価格は公開情報をもとにしたデモです。
-      正式なサイト公開時には店舗確認のうえ更新します。
+    <h2>
+      Gin<br>
+      & Night.
+    </h2>
+
+    <p>
+      ジンを中心としたドリンクと、
+      落ち着いた空間で過ごす夜。
     </p>
-  </section>
 
-  <section class="access">
-    <div class="section-label">ACCESS</div>
+  </div>
 
-    <div class="access-grid">
-      <div>
-        <h2>Find us.</h2>
-        <p style="margin-top:20px;">
-          大阪府大阪市天王寺区大道1-2-29
-        </p>
-      </div>
+</section>
 
-      <div class="info">
-        <div class="info-row">
-          <span>OPEN</span>
-          <span>13:00 — 02:00</span>
-        </div>
 
-        <div class="info-row">
-          <span>CLOSED</span>
-          <span>火曜日</span>
-        </div>
+<!-- MENU -->
 
-        <div class="info-row">
-          <span>SEATS</span>
-          <span>23 seats</span>
-        </div>
+<section class="menu" id="menu">
 
-        <div class="info-row">
-          <span>TEL</span>
-          <span>06-6777-1560</span>
-        </div>
+  <div class="label">
+    MENU
+  </div>
 
-        <div class="info-row">
-          <span>STATION</span>
-          <span>天王寺駅 徒歩約10分</span>
-        </div>
-      </div>
+  <div class="menu-heading">
+    <h2>Selected.</h2>
+    <span>DAY / NIGHT</span>
+  </div>
+
+  <div class="menu-list">
+
+    <div class="menu-item">
+      <span class="menu-name">
+        ネルドリップコーヒー
+      </span>
+      <span class="menu-price">
+        ¥850〜
+      </span>
     </div>
 
-    <a
-      class="button"
-      href="https://www.google.com/maps/search/?api=1&query=大阪府大阪市天王寺区大道1-2-29"
-      target="_blank"
-      style="color:#171717;border-color:#777;"
-    >
-      GOOGLE MAP
-    </a>
-  </section>
+    <div class="menu-item">
+      <span class="menu-name">
+        Coffee
+      </span>
+      <span class="menu-price">
+        ¥600〜
+      </span>
+    </div>
 
-  <footer>
-    <span>poole.</span>
-    <span>DAY / CAFE / NIGHT / BAR</span>
-    <a href="https://www.instagram.com/poole.gin_store/" target="_blank">
-      INSTAGRAM
-    </a>
-  </footer>
+    <div class="menu-item">
+      <span class="menu-name">
+        Tiramisu
+      </span>
+      <span class="menu-price">
+        ¥800〜
+      </span>
+    </div>
+
+    <div class="menu-item">
+      <span class="menu-name">
+        Short Cake
+      </span>
+      <span class="menu-price">
+        ¥900〜
+      </span>
+    </div>
+
+    <div class="menu-item">
+      <span class="menu-name">
+        Gin & Drinks
+      </span>
+      <span class="menu-price">
+        Ask
+      </span>
+    </div>
+
+  </div>
+
+  <p class="demo-note">
+    ※このページは営業提案用のデモサイトです。
+    メニュー・価格等は正式公開時に店舗確認のうえ更新します。
+  </p>
+
+</section>
+
+
+<!-- PHILOSOPHY -->
+
+<section class="philosophy">
+
+  <div class="philosophy-inner">
+
+    <div class="label">
+      THE POOLE. MOOD
+    </div>
+
+    <h2>
+      Stay.<br>
+      Sip.<br>
+      Enjoy.
+    </h2>
+
+    <p>
+      目的がなくても立ち寄りたくなる。
+      少しだけ長くいたくなる。
+      そんな時間を。
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ACCESS -->
+
+<section class="access" id="access">
+
+  <div class="label">
+    ACCESS
+  </div>
+
+  <div class="access-grid">
+
+    <div>
+      <div class="access-title">
+        Find<br>
+        us.
+      </div>
+
+      <p style="margin-top:35px;color:#aaa;">
+        大阪府大阪市天王寺区大道1-2-29
+      </p>
+    </div>
+
+    <div class="info">
+
+      <div class="info-row">
+        <span class="info-label">OPEN</span>
+        <span>13:00 — 02:00</span>
+      </div>
+
+      <div class="info-row">
+        <span class="info-label">CLOSED</span>
+        <span>Tuesday</span>
+      </div>
+
+      <div class="info-row">
+        <span class="info-label">SEATS</span>
+        <span>23 seats</span>
+      </div>
+
+      <div class="info-row">
+        <span class="info-label">AREA</span>
+        <span>Tennoji / Osaka</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <a
+    class="button"
+    style="margin-top:60px;border-color:#777;"
+    href="https://www.google.com/maps/search/?api=1&query=大阪府大阪市天王寺区大道1-2-29"
+    target="_blank"
+  >
+    OPEN GOOGLE MAP
+  </a>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+  <h2>
+    See you<br>
+    at poole.
+  </h2>
+
+  <p>
+    最新情報・営業状況はInstagramをご確認ください。
+  </p>
+
+  <a
+    class="button"
+    href="https://www.instagram.com/poole.gin_store/"
+    target="_blank"
+  >
+    INSTAGRAM
+  </a>
+
+</section>
+
+
+<footer>
+
+  <span>poole.</span>
+
+  <span>
+    DAY / CAFE / NIGHT / BAR
+  </span>
+
+  <span>
+    DEMO SITE
+  </span>
+
+</footer>
 
 </body>
 </html>
 ```
+
